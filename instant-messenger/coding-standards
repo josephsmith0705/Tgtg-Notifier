@@ -1,0 +1,49 @@
+1. C++ Version
+The program should use C++11
+
+2. Header Files
+Every .cpp file (with some exceptions, for example main.cpp) must have a header file, ending in .h
+All header files should be self-contained, and use header guards, to ensure proper functionality
+
+3. Scoping
+Generally, global variables should be avoided unless absolutely necessary
+Where possible, variables should be initialized in their declaration
+
+4. Classes
+Virtual functions should not be called from within a constructor
+Implicit conversions should be avoided
+Class definitions should follow the order public, protected and then private
+
+5. Functions
+Generally, functions should return values rather than perform output operations
+Functions should be split up in order to ensure small size and therefore readability
+To reduce confusion, avoid using trailing return types, and generally use the older method of specifying the return type of a function
+
+6. Other C++ Features
+Use preincrement and predecrement instead of postincrement and postdecrement
+Other C++ extensions should only be used if necessary for the program, and not used to bypass proper coding practices
+
+7. Naming
+Use variable and function names that have a clear meaning
+Variable and function names should be lowercase, and use uppercase characters to seperate words
+File names should be all lowercase, and can use dashes
+C++ files should have the .cpp extension, which header files use .h and ui files use .ui
+
+8. Comments
+Comments should only be used to ensure clarity and readability to code, and are not necessary where the code can be considered self-explanatory
+Comments should use the // syntax
+All functions, if not obvious at first glance, should have an accompanying comment describing the purpose of the function
+Comments should have proper punctuation, spelling and grammar to ensure readability
+
+9.Formatting
+Non-ASCII characters should not be used
+The tab key should be used for indentation, to ensure consistency
+Function declarations and calls can be broken up onto multiple lines if too long to fit on one line
+Conditional statements should be formatting with one space either side of the condition, outside the brackets
+Variables and arrays should be initialized using =
+Contents of private, protected and public in a class should be indented with one tab
+Contents of namespace do not need to be indented
+Horizontal whitespace should not be placed at the end of a line
+
+Exceptions to these rules:
+These rules should be followed wherever possible, unless it is absolutely necessary

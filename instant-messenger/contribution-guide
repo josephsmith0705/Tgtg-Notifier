@@ -1,0 +1,12 @@
+Pull Requests:
+-When making a pull request, ensure that the title and description clearly show the changes being made
+-Use comments to describe any changes to source code that may otherwise be unclear
+-Use detailed commit messages to show changes being made with each commit
+-Only merge the pull request if you recieved approval from the team leader, or two other team members
+
+Code of Conduct:
+-Accept responsibility for any work you've done, and accept constructive criticism
+-Disagreements should be handled professionally
+-Ensure that you deliver any criticism with respect and empathy towards other team members
+-All decisions must be made with the shared intent to make the final program as successful as possible
+This list is not exhaustive, but provides a basis of the intended environment for code development

@@ -1,25 +1,25 @@
 from tgtg import TgtgClient
 import pgeocode
+import time
 #import pycountry
 
-def fetchData():
-    email = input("Email address: ")
-    password = input("Password: ")
-    postcode = input("Postcode: ")
+email = input("Email address: ")
+password = input("Password: ")
+client = TgtgClient(email=email, password=password)
 
+def fetchData():
+
+    postcode = input("Postcode: ")
     geocode = pgeocode.Nominatim('gb') #Create an instance of pgeocode for Great Britain
     geoinfo = geocode.query_postal_code(postcode) #Query postcode in Great Britain to retrieve latitude and longitude data
     latitude = geoinfo['latitude']
     longitude = geoinfo['longitude']
 
-    print("Connecting to",email,"with password:","Just kidding ;)")
-    client = TgtgClient(email=email, password=password)
-
     command = input("Use command 'help' to print available commands\n\n").lower()
     running = True
     while running == True:
         if command == "help":
-            print("all - Fetch a list of all stores\navailable - Fetch a list of available stores\nfav - Fetch a list of your favourite stores\nquit - Exit the program\n")
+            print("all - Fetch a list of all stores\navailable - Fetch a list of available stores\nfav - Fetch a list of your favourite stores\nsubscribe - Subscribe to a store\nquit - Exit the program\n")
             command = input()
         elif command == "all":
             radius = input("How many miles radius should be scanned? ")
@@ -46,6 +46,14 @@ def fetchData():
             else:
                 print("Unrecognised command")
             command = input()
+        elif command == "subscribe":
+            radius = input("How many miles radius should be scanned? ")
+            subscribe(client.get_items( #Pass list created by client.get_items 
+                favorites_only=False,
+                latitude = latitude,
+                longitude = longitude,
+                radius = radius))
+            command = input()
         elif command == "quit":
             running = False
         else:
@@ -60,7 +68,29 @@ def parsePrice(price, x):
     elif x['item']['price']['code'] == "USD":
         price = "$" + price
     return price
+
+def subscribe(items):
+    import time
+    i = 0
+    for x in items:
+        print(str(i)+": "+x['display_name'])
+        i=i+1
+    userStore = int(input("Select a store number to subscribe to "))
+    oldItem = items[userStore]
+    updateFrequency = int(input("How frequently should the program update? (Seconds) "))
+    subscribeLoop(oldItem, updateFrequency)
     
+def subscribeLoop(oldItem, updateFrequency):
+    subscribe = True
+    starttime=time.time() 
+    while subscribe == True:
+        print("Updating...")
+        item = client.get_item(item_id=oldItem['item']['item_id'])
+        if oldItem['items_available'] != item['items_available']:
+            print(item['display_name'],"now has",item['items_available'],"available")
+        oldItem = item
+        time.sleep(updateFrequency - ((time.time() - starttime) % updateFrequency))
+
 def displayAvailableData(items):
     data = []
     for x in items:

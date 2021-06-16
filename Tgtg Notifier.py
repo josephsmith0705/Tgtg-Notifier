@@ -104,7 +104,9 @@ def displayAvailableData(items):
     if len(data) == 0:
         print("No stores currently available\n")
     else:
-        print("\nAvailable stores: \n",data,"\n")
+        print("\nAvailable stores: \n")
+        for x in data:
+            print(x)
 
 def displayAllData(items):
     data = []
@@ -121,8 +123,7 @@ def displayAllData(items):
     if len(data) == 0:
         print("No stores found\n")
     else:
-        print("\n",data,"\n")
+        print("\n")
+        for x in data:
+            print(x)
 fetchData()
-
-
-    
